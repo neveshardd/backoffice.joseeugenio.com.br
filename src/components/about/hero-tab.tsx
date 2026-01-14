@@ -12,8 +12,7 @@ export function HeroTab() {
         fields={[
             { name: 'name', label: 'Nome', placeholder: 'José Eugênio', type: 'text' },
             { name: 'subtitle', label: 'Subtítulo', placeholder: 'Estudante de Arquitetura & BIM Specialist', type: 'text' },
-            { name: 'quote', label: 'Citação', placeholder: '"A arquitetura não é sobre..."', type: 'textarea' },
-            { name: 'imageUrl', label: 'URL da Imagem (Retrato)', placeholder: '/images/portrait.jpg', type: 'text' }
+            { name: 'quote', label: 'Citação', placeholder: '"A arquitetura não é sobre..."', type: 'textarea' }
         ]}
       />
     </div>
