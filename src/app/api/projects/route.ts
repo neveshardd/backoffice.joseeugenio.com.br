@@ -3,7 +3,7 @@ import db from '@/lib/db';
 
 export async function GET() {
   try {
-    const stmt = db.prepare('SELECT * FROM projects ORDER BY createdAt DESC');
+    const stmt = db.prepare('SELECT * FROM projects ORDER BY createdAt ASC');
     const projects = stmt.all();
     
     // Convert isPlaceholder from 0/1 to boolean

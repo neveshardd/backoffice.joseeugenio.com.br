@@ -6,28 +6,28 @@ const db = new Database(dbPath);
 
 console.log(`Migrating database at ${dbPath}...`);
 
-try {
-  console.log('Adding status column...');
-  db.exec('ALTER TABLE projects ADD COLUMN status TEXT');
-  console.log('Status column added.');
-} catch (error: any) {
-  if (error.message.includes('duplicate column name')) {
-    console.log('Status column already exists.');
-  } else {
-    console.error('Error adding status column:', error);
+// Helper function to add column if it doesn't exist
+function addColumn(table: string, column: string, type: string) {
+  try {
+    console.log(`Adding ${column} column to ${table}...`);
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${type}`);
+    console.log(`${column} column added.`);
+  } catch (error: any) {
+    if (error.message.includes('duplicate column name')) {
+      console.log(`${column} column already exists.`);
+    } else {
+      console.error(`Error adding ${column} column:`, error);
+    }
   }
 }
 
-try {
-  console.log('Adding softwares column...');
-  db.exec('ALTER TABLE projects ADD COLUMN softwares TEXT');
-  console.log('Softwares column added.');
-} catch (error: any) {
-  if (error.message.includes('duplicate column name')) {
-    console.log('Softwares column already exists.');
-  } else {
-    console.error('Error adding softwares column:', error);
-  }
-}
+// Ensure all columns exist in projects
+addColumn('projects', 'status', 'TEXT');
+addColumn('projects', 'softwares', 'TEXT');
+addColumn('projects', 'credits', 'TEXT');
+addColumn('projects', 'location', 'TEXT');
+addColumn('projects', 'year', 'TEXT');
+addColumn('projects', 'area', 'TEXT');
+addColumn('projects', 'imageAlt', 'TEXT');
 
 console.log('Migration complete.');

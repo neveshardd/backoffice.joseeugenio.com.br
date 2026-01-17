@@ -3,16 +3,18 @@
 import { useState } from 'react';
 import { HeroTab } from '@/components/home/hero-tab';
 import { AboutPreviewTab } from '@/components/home/about-preview-tab';
+import { ProjectsTab } from '@/components/home/projects-tab';
 import { ContactTab } from '@/components/home/contact-tab';
 import { cn } from '@/lib/utils';
 
-type Tab = 'hero' | 'about' | 'contact';
+type Tab = 'hero' | 'about' | 'projects' | 'contact';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<Tab>('hero');
 
   const tabs: { id: Tab; label: string }[] = [
     { id: 'hero', label: 'Hero / Banner' },
+    { id: 'projects', label: 'Destaques Projetos' },
     { id: 'about', label: 'Chamada Sobre' },
     { id: 'contact', label: 'Chamada Contato' },
   ];
@@ -43,6 +45,7 @@ export default function HomePage() {
 
       <div className="min-h-[500px]">
         {activeTab === 'hero' && <HeroTab />}
+        {activeTab === 'projects' && <ProjectsTab />}
         {activeTab === 'about' && <AboutPreviewTab />}
         {activeTab === 'contact' && <ContactTab />}
       </div>
